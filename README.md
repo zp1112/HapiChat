@@ -1,6 +1,6 @@
 ## Hapi 项目初始化。
 
-本项目大部分参考thesadboy的ChatRoom(https://github.com/thesadboy/ChatRoom)。
+本项目大部分参考thesadboy的ChatRoom(https://github.com/thesadboy/ChatRoom)
 
 npm init自动创建一个项目，生成package.json文件。
 
