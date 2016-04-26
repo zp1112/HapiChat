@@ -1,0 +1,11 @@
+.idea/
+.nyc_output/
+node_modules/
+extra/
+coverage/
+demo/
+
+.DS_Store
+nohup.out
+dump.rdb
+*.log
