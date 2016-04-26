@@ -15,7 +15,7 @@ $ npm install --save-dev babel-preset-react
 ```
 
 
-# ES7不同阶段语法提案的转码规则（共有4个阶段），选装一个
+### ES7不同阶段语法提案的转码规则（共有4个阶段），选装一个
 
 ```shell
 $ npm install --save-dev babel-preset-stage-0
