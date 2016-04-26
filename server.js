@@ -6,8 +6,6 @@ import vision from 'vision';
 import hapi from 'hapi';
 import handlebars from 'handlebars';
 import path from 'path';
-import { signinHandler, signupHandler } from './routes/signin';
-import { indexHandler } from './routes/index';
 
 const server = new hapi.Server({
   connections: {
@@ -21,12 +19,8 @@ const server = new hapi.Server({
 server.connection({
   host: '0.0.0.0',
   port: 5000
-},
-  {
-    timeout: {
-      server: 5000, socket: 5000
-    }
-  });
+});
+
 server.register([inert, vision], () => {
   if (!process.env.DEBUG) {
     server.start(() => {
@@ -49,45 +43,8 @@ server.views({
   isCached: false
 });
 
-server.route([{
-  method: 'GET',
-  path: '/{param*}',
-  handler: {
-    directory: {
-      path: '.',
-      redirectToSlash: true,
-      index: true
-    }
-  }
-}, {
-  method: 'get',
-  path: '/',
-  handler: indexHandler
-}, {
-  method: 'get',
-  path: '/signin',
-  handler: (request, reply) => {
-    reply.view('signin.html', {
-      title: 'Login'
-    });
-  }
-}, {
-  method: 'post',
-  path: '/signup',
-  handler: signupHandler
-}, {
-  method: 'get',
-  path: '/signup',
-  handler: (request, reply) => {
-    reply.view('signup.html', {
-      title: 'Signup'
-    });
-  }
-}, {
-  method: 'post',
-  path: '/signin',
-  handler: signinHandler
-}]);
+server.route(require('./routes'));
+
 const clients = {};
 const _users = [];
 const io = SocketIO.listen(server.listener);
@@ -129,9 +86,7 @@ io.sockets.on('connection', (socket) => {
       clients[_data.from].emit('say', msgData);
     }
   });
-  // socket.on('offline', () => {
-  //   socket.disconnect();
-  // });
+
   socket.on('disconnect', () => {
     // 有人下线
     const userOffline = () => {

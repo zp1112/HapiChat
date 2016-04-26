@@ -1,8 +1,9 @@
-import { getUser, registerUser } from './model/user';
+import { getUser, registerUser } from '../model/user';
 exports.signinHandler = async(request, reply) => {
   const payload = request.payload.username;
   const username = payload[0];
   const thePassword = parseInt(payload[1], 10);
+  // 客户端发送过来的cookie
   let session = request.state.session;
   const pass = await getUser(username);
   if (pass === -1) {
@@ -26,4 +27,14 @@ exports.signupHandler = async(request, reply) => {
     return reply.redirect('/signup');
   }
   return reply.redirect('/').state('session', username);
+};
+
+exports.indexHandler = async(request, reply) => {
+  if (request.state.session) {
+    reply.view('index.html', {
+      title: 'Index'
+    });
+  } else {
+    reply.redirect('/signin');
+  }
 };
