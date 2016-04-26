@@ -1,8 +1,8 @@
 ## Hapi 项目初始化。
 
-1. npm init自动创建一个项目，生成package.json文件。
+npm init自动创建一个项目，生成package.json文件。
 
-2. 新建配置文件.babelrc，
+新建配置文件.babelrc，
 
 ```shell
 $ npm install --save-dev babel-preset-es2015
@@ -35,7 +35,7 @@ $ npm install --save-dev babel-preset-stage-3
   }
   ```
 
-3. 安装babel-register，就可以改写require命令，新建babel.js，写入：
+安装babel-register，就可以改写require命令，新建babel.js，写入：
 
 ```shell
 npm install --save-dev babel-register
@@ -48,13 +48,13 @@ module.exports = require('./server.js');
 
 这样后面的文件就可以用import 代替require，import的优点在于可以引入所需方法或者变量，而不需要加载整个模块，提高了性能。
 
-4. transform-runtime可以启用相应的es6语法插件。
+transform-runtime可以启用相应的es6语法插件。
 
 ```shell
 npm install babel-plugin-transform-runtime
 ```
 
-5. 安装eslint插件用于静态检查代码的语法和风格，
+安装eslint插件用于静态检查代码的语法和风格，
 
 ```shell
 npm install --save-dev eslint babel-eslint
@@ -91,4 +91,4 @@ npm install --save-dev eslint babel-eslint
 
      创建.eslintignore可以忽略指定文件的代码检查。
 
-6. 我们在使用 Git 进行版本控制的时候，有些文件是无需纳入 Git 管理的，通常都是些自动 生成的文件，像日志或者编译过程中创建的文件。我们可以创建一个名为 .gitignore 的文件，列出要忽略的文件来解决这个问题。
+我们在使用 Git 进行版本控制的时候，有些文件是无需纳入 Git 管理的，通常都是些自动 生成的文件，像日志或者编译过程中创建的文件。我们可以创建一个名为 .gitignore 的文件，列出要忽略的文件来解决这个问题。
